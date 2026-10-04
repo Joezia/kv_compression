@@ -1,0 +1,29 @@
+model:
+  id: Qwen/Qwen3.5-9B
+  revision: c202236235762e1c871ad0ccb60c8ee5ba337b9a
+  dtype: bfloat16
+  loader: Qwen3_5ForCausalLM
+dataset:
+  id: semianalysisai/cc-traces-weka-062126
+  revision: 23f152f6f0f9399a85901b89a6458def0ef16729
+  split: train
+  corpus: coding
+  samples:
+    - {stage: m0, trace_index: 0, outer_request_index: 0, used_tokens: 256}
+    - {stage: m1, trace_index: 0, outer_request_index: 1, used_tokens: 2048}
+    - {stage: m2a, trace_index: 0, outer_request_index: 1, used_tokens: 8192}
+    - {stage: m2b, trace_index: 1, outer_request_index: 1, used_tokens: 2048}
+    - {stage: m2c, trace_index: 2, outer_request_index: 1, used_tokens: 2048}
+runtime:
+  physical_gpu: 1
+  batch_size: 1
+  max_gpu_memory_gib: 44
+  hf_home: models/hf
+  raw_artifact_root: artifacts/raw
+codec:
+  block_sizes: [65536, 262144]
+  codecs: [ans_raw, ans_byte_lane, zstd]
+  zstd_level: 3
+  ans_version: constriction-0.5.0
+  zstd_version: zstandard-0.25.0
+seed: 42

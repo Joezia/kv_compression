@@ -1,0 +1,32 @@
+{
+  "command": [
+    "scripts/run_pilot.py",
+    "m2b",
+    "--run-id",
+    "20261004_m2b_qwen35_trace1_2k_ansraw"
+  ],
+  "cuda_visible_devices": "1",
+  "gpu": {
+    "compute_capability": "8.6",
+    "free_bytes_at_start": 50598051840,
+    "logical_index": 0,
+    "name": "NVIDIA RTX A6000",
+    "physical_index": 1,
+    "total_bytes": 50897289216
+  },
+  "hostname": "xtraa6k04",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "aiperf": "0.13.0",
+    "constriction": "0.5.0",
+    "datasets": "4.1.1",
+    "numpy": "2.4.6",
+    "tokenizers": "0.23.2",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.17.0",
+    "zstandard": "0.25.0"
+  },
+  "platform": "Linux-5.15.0-25-generic-x86_64-with-glibc2.35",
+  "python": "3.11.16",
+  "use_hub_kernels": "NO"
+}

@@ -1,0 +1,34 @@
+{
+  "attention_implementation": "sdpa",
+  "complete_persistent_state_raw_bytes": 60293120,
+  "cuda_peak_allocated_bytes": 18044859904,
+  "cuda_peak_reserved_bytes": 18060673024,
+  "forward_seconds": 0.34337012097239494,
+  "input_tokens": 256,
+  "kv_only_raw_bytes": 8388608,
+  "layer_type_counts": {
+    "full_attention": 8,
+    "linear_attention": 24
+  },
+  "model_id": "Qwen/Qwen3.5-9B",
+  "model_load_seconds": 702.9537732470781,
+  "model_revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+  "persistent_state_dtypes": {
+    "bfloat16": 40,
+    "float32": 24
+  },
+  "raw_bytes_by_kind": {
+    "convolution": 1572864,
+    "key": 4194304,
+    "recurrent": 50331648,
+    "value": 4194304
+  },
+  "run_id": "20261004_m0_qwen35_256",
+  "stage": "m0",
+  "state_kind_counts": {
+    "convolution": 24,
+    "key": 8,
+    "recurrent": 24,
+    "value": 8
+  }
+}

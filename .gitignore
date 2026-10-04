@@ -1,0 +1,26 @@
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.cache/
+
+# Large downloaded/generated payloads (keep metadata/results separately)
+models/
+checkpoints/
+data/raw/
+data/kv/
+artifacts/raw/
+*.safetensors
+*.pt
+*.pth
+*.bin
+
+# Machine-local configuration
+configs/local.*
+.DS_Store

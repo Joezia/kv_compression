@@ -1,0 +1,13 @@
+codec,block_size,scope,compression_ratio
+ans_byte_lane,65536,KV-only,1.4042202523374825
+ans_byte_lane,65536,Complete state,1.3431167002243225
+ans_byte_lane,262144,KV-only,1.4649530944028828
+ans_byte_lane,262144,Complete state,1.4042145341943675
+ans_raw,65536,KV-only,1.2412604242855687
+ans_raw,65536,Complete state,1.206466359033909
+ans_raw,262144,KV-only,1.2674986907391363
+ans_raw,262144,Complete state,1.23023264341421
+zstd,65536,KV-only,1.259854287434764
+zstd,65536,Complete state,1.223522916001366
+zstd,262144,KV-only,1.2678245372738766
+zstd,262144,Complete state,1.2307306031983254

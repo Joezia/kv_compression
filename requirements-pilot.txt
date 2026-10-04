@@ -1,0 +1,4 @@
+# Direct project dependencies; Torch/Transformers come from the existing authorized environment.
+aiperf==0.13.0
+constriction==0.5.0
+zstandard==0.25.0

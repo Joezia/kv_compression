@@ -1,0 +1,10 @@
+{
+  "all_blocks": 19328,
+  "all_blocks_bit_exact": true,
+  "note": "M1 is excluded from aggregate because it is the 2K prefix of the M2a request.",
+  "source_runs": [
+    "20261004_m2a_qwen35_8k_allcodecs",
+    "20261004_m2b_qwen35_trace1_2k_ansraw",
+    "20261004_m2c_qwen35_trace2_2k_ansraw"
+  ]
+}

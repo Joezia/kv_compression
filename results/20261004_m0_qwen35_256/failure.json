@@ -1,0 +1,6 @@
+{
+  "run_id": "20261004_m0_qwen35_256",
+  "status": "failed_before_forward",
+  "reason": "The initial invocation ended during concurrent model-weight fetching after about 4.2 GB had been cached. No explicit downloader error was emitted and no cache audit was produced.",
+  "recovery": "Preserved this run, resumed the same pinned revision with one download worker, and reran M0 as 20261004_m0_qwen35_256_retry1."
+}

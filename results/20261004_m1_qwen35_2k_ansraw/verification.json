@@ -1,0 +1,16 @@
+{
+  "all_blocks_bit_exact": true,
+  "all_state_checksums_recorded": true,
+  "bit_exact_blocks": 472,
+  "blocks": 472,
+  "codec_configuration_for_cache_rebuild": {
+    "block_size": 262144,
+    "codec": "ans_raw"
+  },
+  "codec_run": true,
+  "continuation_hidden_allclose_rtol_1e-5_atol_1e-5": true,
+  "continuation_hidden_exact": true,
+  "continuation_hidden_max_abs_diff": 0.0,
+  "inventory_matches_config": true,
+  "rehydrated_cache_byte_exact": true
+}
