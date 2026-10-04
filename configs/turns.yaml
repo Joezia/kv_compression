@@ -1,0 +1,58 @@
+# Per-turn (agentic) experiment configuration. Plan: plans/weekly/2026-10-06.md (v2 scope).
+seed: 42
+
+dataset:
+  id: semianalysisai/cc-traces-weka-062126
+  revision: 23f152f6f0f9399a85901b89a6458def0ef16729
+  split: train
+  corpus: coding
+  # Fixed before any compression result is seen. Trace 3 is held out to build
+  # shared ANS tables; traces 0-2 are the first three sessions of the dataset.
+  calibration_traces: [3]
+  eval_traces: [0, 1, 2]
+  calibration_max_turns: 3
+
+# Model queue: run in this order, one model at a time. Each new model first
+# needs an M0-style cache audit (run_turns.py audit) before per-turn runs.
+# revision: null means "resolve at first run, record it, then pin it here".
+models:
+  qwen35_9b:
+    id: Qwen/Qwen3.5-9B
+    revision: c202236235762e1c871ad0ccb60c8ee5ba337b9a
+    loader: Qwen3_5ForCausalLM
+    dtype: bfloat16
+    arch: hybrid (8 full-attention GQA + 24 Gated-DeltaNet layers)
+    max_context_tokens: 131072
+  qwen3_4b_2507:
+    id: Qwen/Qwen3-4B-Instruct-2507
+    revision: null
+    loader: AutoModelForCausalLM
+    dtype: bfloat16
+    arch: dense GQA, all layers full attention
+    max_context_tokens: 98304
+
+run:
+  cache_block_tokens: 64          # = AgentX hash block; also the dedup unit
+  prefill_chunk_tokens: 8192
+  max_snapshots: 8
+  kv_formats: [bf16, fp8_e4m3_sat]   # fp8 = labelled post-hoc conversion (vLLM-style, scale 1.0)
+  kv_codecs:                         # [codec, block_tokens]
+    - [zstd, 64]
+    - [ans_raw, 64]
+    - [ans_lane, 64]
+    - [ans_lane_shared, 64]
+    - [ans_lane, 16]
+    - [ans_lane_shared, 16]
+    - [ans_lane, 256]
+    - [ans_lane_shared, 256]
+  state_codecs: [zstd, ans_lane, ans_lane_shared]
+  primary: [ans_lane_shared, 64]     # archived + rehydration-checked; headline codec
+  zstd_level: 3
+
+runtime:
+  physical_gpu: 1
+  max_gpu_memory_gib: 44
+  cpu_workers: 16
+  max_inflight_gib: 4
+  raw_artifact_root: artifacts/raw
+  hf_home: models/hf

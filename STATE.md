@@ -1,9 +1,9 @@
 # 当前状态
 
 - 更新时间：2026-10-04（Asia/Singapore）
-- 当前阶段：P1 最小可行闭环
+- 当前阶段：P2 agentic 按轮测量（P1 已完成）
 - 当前周计划：`plans/weekly/2026-10-06.md`
-- 状态：M0–M3 已完成并冻结，等待 2026-10-06 会议反馈
+- 状态：v1（M0–M3）完成；2026-10-04 用户复盘后改为 v2 按轮测量，代码已就绪，N0–N4 尚未在服务器上运行
 
 ## 已完成事实
 
@@ -15,7 +15,14 @@
 - M2 已完成 8K 单样本多 codec/块大小对照，以及另外两个独立 AgentX 请求的 2K raw-byte ANS 验证。
 - M3 已生成可复查的聚合表、分层表、图和会议报告；实验范围现已冻结。
 
-## 关键结果
+## v2 已完成事实（2026-10-04）
+
+- 复盘确认 v1 的局限：每个会话只取 1 个请求的位置 0 前缀（3%–13%），没有多轮信息；三个会话的 K/V 压缩比几乎相同（1.2671/1.2673/1.2675）。
+- 勘误（由 v1 的 blocks.csv 重算）：byte-lane K/V 的 payload-only 压缩比在 64 KiB 与 256 KiB 下为 1.4857 / 1.4862，总压缩比的差异来自元数据（概率表占比 4.4% vs 1.1%）；“完整持久状态”比值依赖长度；headline 应改用 byte-lane。
+- 新增按轮实验代码：`src/agentic_inputs.py`（AgentX 会话逐轮合成、真实轨迹的 chat template 渲染、前缀链 key、hash 级 trace 统计）、`src/turn_runner.py`（增量 prefill、混合模型 snapshot/回滚、新块提取、并行编码、归档重建检查）、`src/kv_codec.py` 的 AKV2（紧凑 header、16-bit 块内表、共享表）、`scripts/analyze_traces.py`、`run_turns.py`、`summarize_turns.py`、`prepare_trajectories.py`，配置为 `configs/turns.yaml`。
+- 测试：94 passed（CPU 容器，torch 2.11.0 / transformers 5.17.0 / constriction 0.5.0 / zstandard 0.25.0）；其中按轮流程用随机初始化的微型 Qwen3.5/Qwen3 验证（仅为测试夹具，不是结果）。真实模型与数据尚未运行。
+
+## v1 关键结果（P1，保留）
 
 - M0 256 tokens：完整持久状态 60,293,120 bytes；KV-only 8,388,608 bytes。
 - M1 2K raw-byte ANS（256 KiB blocks）：KV-only 压缩比 1.267268；完整持久状态压缩比 1.172099；472/472 块逐字节一致。
@@ -49,9 +56,9 @@
 
 ## 下一步
 
-- 先在 2026-10-06 会议中审阅本周证据、样本局限和 codec 对照。
-- 会议确认后再归档本周计划并建立下一周计划；优先考虑扩大真实 AgentX 内容覆盖和会话级唯一状态统计，不在当前冻结周内继续执行。
+- 在服务器上按周计划 v2 执行 N0 → N1 → N2（→ N3 stretch）→ N4；命令见 `plans/weekly/2026-10-06.md`。
+- N1 先用 `--max-turns 5` 冒烟，确认 64K 首轮的耗时与显存，再跑完整会话。
 
 ## 阻塞
 
-- 无。
+- 无硬阻塞。待核实：Qwen3-4B-Instruct-2507 的 revision 与结构；真实轨迹数据集的名称与 schema；64K 首轮在参考 PyTorch 路径上的资源占用。
