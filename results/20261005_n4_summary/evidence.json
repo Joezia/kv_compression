@@ -1,0 +1,24 @@
+{
+  "source_runs": [
+    "20261005_n1_qwen35_t0",
+    "20261005_n1_qwen35_t1",
+    "20261005_n1_qwen35_t2",
+    "20261005_n2_qwen3_4b_t0",
+    "20261005_n2_qwen3_4b_t1",
+    "20261005_n2_qwen3_4b_t2",
+    "20261005_n3_qwen3_4b_traj0",
+    "20261005_n3_qwen3_4b_traj1"
+  ],
+  "all_units_bit_exact": true,
+  "bit_exact_units": 11398936,
+  "rehydration": {
+    "20261005_n1_qwen35_t0": "ok",
+    "20261005_n1_qwen35_t1": "skipped",
+    "20261005_n1_qwen35_t2": "ok",
+    "20261005_n2_qwen3_4b_t0": "ok",
+    "20261005_n2_qwen3_4b_t1": "ok",
+    "20261005_n2_qwen3_4b_t2": "ok",
+    "20261005_n3_qwen3_4b_traj0": "ok",
+    "20261005_n3_qwen3_4b_traj1": "ok"
+  }
+}

@@ -1,0 +1,35 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+{
+  "instance_id": [
+    "str",
+    "AnalogJ__lexicon-336"
+  ],
+  "model_name": [
+    "str",
+    "swe-agent-llama-70b"
+  ],
+  "target": [
+    "bool",
+    "False"
+  ],
+  "trajectory": [
+    "list",
+    "[{'cutoff_date': '01.01.2023', 'mask': False, 'role': 'system', 'system_prompt': \"SETTING: You are an autonomous programmer, and you're working directly in the command line with a special interface.\\n\\nThe special interface consists of a file editor that shows you 100 lines of a file at a time.\\nIn "
+  ],
+  "exit_status": [
+    "str",
+    "submitted (exit_context)"
+  ],
+  "generated_patch": [
+    "str",
+    "\ndiff --git a/lexicon/providers/memset.py b/lexicon/providers/memset.py\nindex 6394170a..9c1d3bbe 100644\n--- a/lexicon/providers/memset.py\n+++ b/lexicon/providers/memset.py\n@@ -20,11 +20,12 @@ class Provider(BaseProvider):\n     def __init__(self, config):\n         super(Provider, self).__init__(confi"
+  ],
+  "eval_logs": [
+    "str",
+    "Will execute following command for apply_patch:\n```\n\ncd //lexicon &&\nsource activate base &&\nconda activate lexicon &&\ngit apply -v /swebench_matterhorn/prediction_patch.patch --allow-empty\n```\n\nChecking patch lexicon/providers/memset.py...\nChecking patch reproduce.py...\nApplied patch lexicon/provid"
+  ]
+}
+message keys: ['cutoff_date', 'mask', 'role', 'system_prompt', 'text']
+roles: {'system': 1, 'user': 46, 'ai': 46}
+normalized: [('system', 4873), ('user', 4634), ('assistant', 272), ('user', 1052), ('assistant', 494), ('user', 78)] ...
+empty contents after normalization: 0

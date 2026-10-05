@@ -1,0 +1,89 @@
+{
+  "model": {
+    "arch": "dense GQA, all layers full attention",
+    "dtype": "bfloat16",
+    "id": "Qwen/Qwen3-4B-Instruct-2507",
+    "key": "qwen3_4b_2507",
+    "loader": "AutoModelForCausalLM",
+    "max_context_tokens": 98304,
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "options": {
+    "cache_block_tokens": 64,
+    "cpu_workers": 16,
+    "kv_codecs": [
+      [
+        "zstd",
+        64
+      ],
+      [
+        "ans_raw",
+        64
+      ],
+      [
+        "ans_lane",
+        64
+      ],
+      [
+        "ans_lane_shared",
+        64
+      ],
+      [
+        "ans_lane",
+        16
+      ],
+      [
+        "ans_lane_shared",
+        16
+      ],
+      [
+        "ans_lane",
+        256
+      ],
+      [
+        "ans_lane_shared",
+        256
+      ]
+    ],
+    "kv_formats": [
+      "bf16",
+      "fp8_e4m3_sat"
+    ],
+    "max_context_tokens": 98304,
+    "max_gpu_memory_bytes": 47244640256,
+    "max_inflight_bytes": 4294967296,
+    "max_snapshots": 8,
+    "max_turns": null,
+    "mode": "encode",
+    "prefill_chunk_tokens": 8192,
+    "primary": [
+      "ans_lane_shared",
+      64
+    ],
+    "state_codecs": [
+      "zstd",
+      "ans_lane",
+      "ans_lane_shared"
+    ],
+    "zstd_level": 3
+  },
+  "run_id": "20261005_n3_qwen3_4b_traj1",
+  "session_fingerprint": "5c5fe56baf0566c64d049b7b4fb60157f530119ae123259c5acf6e7c3d953fbe",
+  "session_id": "AnalogJ__lexicon-336#1",
+  "session_meta": {
+    "assistant_turns": 25,
+    "dataset": "nebius/SWE-agent-trajectories",
+    "messages": 51,
+    "revision": "68195a1450865274106246d0d0296a1d6807b88e",
+    "row_index": 1,
+    "selection_rule": "first 2 rows with >= 15 assistant turns",
+    "session_id": "AnalogJ__lexicon-336#1",
+    "source_kind": "trajectory:nebius/SWE-agent-trajectories",
+    "trajectory_file": "data/raw/swe_agent_trajectories.jsonl"
+  },
+  "shared_table_set_bytes": 110592,
+  "shared_tables": "results/20261005_n2_qwen3_4b_calib/shared_tables.npz",
+  "source": "trajectory",
+  "source_kind": "trajectory:nebius/SWE-agent-trajectories",
+  "turns_available": 25
+}
