@@ -2,7 +2,7 @@
 
 本项目研究 agentic workload（多轮、工具调用、前缀高度复用）中持久推理缓存的无损压缩空间：full-attention K/V，以及混合架构实际保存的 recurrent/convolution state。核心粒度是**按轮**：每一轮请求在 prefix cache 之上新增了多少状态、这些新增状态能被无损压缩多少，并且去重收益与熵编码收益分开核算。ANS 是首先评估的编码方法，不是预设一定优于其他方案的结论。
 
-当前状态：P1（单请求闭环）已完成；2026-10-04 用户复盘后改为 v2 范围，进入 P2（agentic 按轮测量）。具体进度见 STATE 和当前周计划。
+当前状态：P1（单请求闭环）已完成；P2（agentic 按轮测量）首轮已完成：两个模型、6 个 AgentX 会话与 8 条 SWE-agent 轨迹，报告见 `reports/meeting_2026-10-06_v2.md`。具体进度见 STATE 和当前周计划。
 
 ## 两层计划的职责
 
@@ -79,7 +79,7 @@ dtype 与模型并不完全绑定：
 
 真实前向 → 持久状态提取 → ANS 编解码 → 逐字节恢复 → cache 重建续算，均已打通（`results/20261004_m*`）。复盘后修正的结论：块大小差异来自元数据而非数据；“完整状态压缩率”依赖长度；headline 不应使用 raw-byte ANS。见 `reports/meeting_2026-10-06.md` 的勘误。
 
-### P2 — Agentic 按轮测量（当前）
+### P2 — Agentic 按轮测量（首轮完成，2026-10-05）
 
 在完整 AgentX 会话上按轮做增量 prefill，只存储和编码新块；混合模型每轮存储一份 state snapshot。输出每轮新增 token、R_dedup、各 codec 的 R_codec（K/V 与 state 分开）、BF16/FP8 两种格式、16/64/256-token 单元，以及共享概率表与块内概率表的对照。
 
@@ -119,14 +119,15 @@ dtype 与模型并不完全绑定：
 # P1（单请求闭环，已完成）
 env CUDA_VISIBLE_DEVICES=1 HF_HOME="$PWD/models/hf" USE_HUB_KERNELS=NO .venv/bin/python scripts/run_pilot.py m1 --run-id <new_id>
 
-# P2（按轮）：命令见 plans/weekly/2026-10-06.md 的 v2 执行节点
+# P2（按轮）：命令见 plans/weekly/2026-10-06.md 的 v2 执行节点；长上下文用 --config configs/turns_long.yaml
 .venv/bin/python scripts/analyze_traces.py --run-id <id> --limit 50
 env CUDA_VISIBLE_DEVICES=1 HF_HOME="$PWD/models/hf" USE_HUB_KERNELS=NO .venv/bin/python scripts/run_turns.py calibrate --model qwen35_9b --run-id <id>
 env CUDA_VISIBLE_DEVICES=1 HF_HOME="$PWD/models/hf" USE_HUB_KERNELS=NO .venv/bin/python scripts/run_turns.py run --model qwen35_9b --trace-index 0 --tables results/<calib_id>/shared_tables.npz --run-id <id>
 .venv/bin/python scripts/summarize_turns.py --run-id <id> <run_id> [<run_id> ...]
+.venv/bin/python scripts/report_tables.py --run-id <id> --summary <summary_id> --trace-structure <n0_id>
 ```
 
-固定配置：`configs/pilot.yaml`（P1）、`configs/turns.yaml`（P2）。
+固定配置：`configs/pilot.yaml`（P1）、`configs/turns.yaml` 与 `configs/turns_long.yaml`（P2）。
 
 ## 资料
 

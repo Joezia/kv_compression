@@ -1,0 +1,35 @@
+{
+  "sessions": 50,
+  "main_turns": 7291,
+  "overall_dedup_ratio": 89.95870313561107,
+  "per_session_dedup_p10_p50_p90": [
+    14.945005045408678,
+    28.14830917874396,
+    132.20110118241718
+  ],
+  "main_turns_p10_p50_p90_max": [
+    20,
+    55,
+    580,
+    1009
+  ],
+  "max_input_tokens_p10_p50_p90_max": [
+    110464,
+    214720,
+    816704,
+    876544
+  ],
+  "new_tokens_per_turn_p50_p90": [
+    1792,
+    4416
+  ],
+  "prefix_hit_fraction_per_turn_p10_p50": [
+    0.9701492537313433,
+    0.9948338212502152
+  ],
+  "inter_request_gap_s_p50_p90": [
+    17.30799999998999,
+    148.47500000000002
+  ],
+  "sessions_with_subagents": 26
+}

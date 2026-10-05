@@ -1,0 +1,65 @@
+{
+  "all_units_bit_exact": true,
+  "bit_exact_units": 16590152,
+  "kv_bf16_primary": {
+    "qwen35_9b": {
+      "compression_ratio": 1.4823518019014643,
+      "payload_only_ratio": 1.482804583786683,
+      "order0_entropy_ratio": 1.4851245894369527,
+      "session_min_ratio": 1.4813725560746862,
+      "session_max_ratio": 1.4826760527806904
+    },
+    "qwen3_4b_2507": {
+      "compression_ratio": 1.4782737814300433,
+      "payload_only_ratio": 1.4787240751145505,
+      "order0_entropy_ratio": 1.4810884871135053,
+      "session_min_ratio": 1.477376844060048,
+      "session_max_ratio": 1.4784417906575813
+    }
+  },
+  "kv_bf16_zstd": {
+    "qwen35_9b": {
+      "compression_ratio": 1.2693401249530951,
+      "payload_only_ratio": 1.2695737285956012,
+      "order0_entropy_ratio": 1.4851245894369527,
+      "session_min_ratio": 1.2692108625320877,
+      "session_max_ratio": 1.269679066259613
+    },
+    "qwen3_4b_2507": {
+      "compression_ratio": 1.2755750249807483,
+      "payload_only_ratio": 1.275810929358523,
+      "order0_entropy_ratio": 1.4810884871135053,
+      "session_min_ratio": 1.274231985325224,
+      "session_max_ratio": 1.2764452317930457
+    }
+  },
+  "kv_fp8_primary": {
+    "qwen35_9b": {
+      "compression_ratio": 1.20469579928866,
+      "payload_only_ratio": 1.205116700495753,
+      "order0_entropy_ratio": 1.2068383833189535,
+      "session_min_ratio": 1.2027400469972311,
+      "session_max_ratio": 1.2052208170400258
+    },
+    "qwen3_4b_2507": {
+      "compression_ratio": 1.2026598063775782,
+      "payload_only_ratio": 1.2030792858532653,
+      "order0_entropy_ratio": 1.2050782312069572,
+      "session_min_ratio": 1.202479461787962,
+      "session_max_ratio": 1.2028356953131103
+    }
+  },
+  "qwen35_state_snapshots_primary": {
+    "compression_ratio": 1.1775954348195314,
+    "payload_only_ratio": 1.1776403210308635,
+    "order0_entropy_ratio": 1.1787009556124233,
+    "session_min_ratio": 1.176974845067573,
+    "session_max_ratio": 1.1784812821037849
+  },
+  "by_source_R_codec_kv": {
+    "qwen35_9b|AgentX": 1.4825,
+    "qwen3_4b_2507|AgentX": 1.4784,
+    "qwen3_4b_2507|SWE-agent trajectory": 1.4777,
+    "qwen35_9b|SWE-agent trajectory": 1.4817
+  }
+}
