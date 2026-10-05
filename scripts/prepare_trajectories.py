@@ -51,6 +51,7 @@ def main() -> None:
     parser.add_argument("--out", type=Path)
     parser.add_argument("--count", type=int, default=2)
     parser.add_argument("--min-assistant-turns", type=int, default=15)
+    parser.add_argument("--distinct-field", help="skip rows whose value in this field was already selected (e.g. instance_id)")
     parser.add_argument("--inspect", action="store_true", help="print the schema of the first row and exit")
     args = parser.parse_args()
     from datasets import load_dataset
@@ -73,6 +74,7 @@ def main() -> None:
         raise SystemExit(f"refusing to overwrite {args.out}")
     args.out.parent.mkdir(parents=True, exist_ok=True)
     kept = 0
+    seen_values: set[str] = set()
     with args.out.open("x", encoding="utf-8") as f:
         for index, row in enumerate(ds):
             raw = find_messages(row)
@@ -84,12 +86,18 @@ def main() -> None:
             n_assistant = sum(m["role"] == "assistant" for m in msgs)
             if n_assistant < args.min_assistant_turns:
                 continue
+            if args.distinct_field:
+                value = str(row.get(args.distinct_field))
+                if value in seen_values:
+                    continue
+                seen_values.add(value)
             sid = next((str(row[k]) for k in ID_FIELDS if row.get(k) is not None), f"row{index}")
             f.write(json.dumps({
                 "session_id": f"{sid}#{index}", "row_index": index, "dataset": args.dataset,
                 "revision": args.revision, "source_kind": f"trajectory:{args.dataset}",
                 "assistant_turns": n_assistant, "messages": msgs,
-                "selection_rule": f"first {args.count} rows with >= {args.min_assistant_turns} assistant turns",
+                "selection_rule": f"first {args.count} rows with >= {args.min_assistant_turns} assistant turns"
+                + (f", distinct {args.distinct_field}" if args.distinct_field else ""),
             }) + "\n")
             kept += 1
             if kept >= args.count:
