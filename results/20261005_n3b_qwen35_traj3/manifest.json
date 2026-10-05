@@ -1,0 +1,89 @@
+{
+  "model": {
+    "arch": "hybrid (8 full-attention GQA + 24 Gated-DeltaNet layers)",
+    "dtype": "bfloat16",
+    "id": "Qwen/Qwen3.5-9B",
+    "key": "qwen35_9b",
+    "loader": "Qwen3_5ForCausalLM",
+    "max_context_tokens": 131072,
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+  },
+  "options": {
+    "cache_block_tokens": 64,
+    "cpu_workers": 16,
+    "kv_codecs": [
+      [
+        "zstd",
+        64
+      ],
+      [
+        "ans_raw",
+        64
+      ],
+      [
+        "ans_lane",
+        64
+      ],
+      [
+        "ans_lane_shared",
+        64
+      ],
+      [
+        "ans_lane",
+        16
+      ],
+      [
+        "ans_lane_shared",
+        16
+      ],
+      [
+        "ans_lane",
+        256
+      ],
+      [
+        "ans_lane_shared",
+        256
+      ]
+    ],
+    "kv_formats": [
+      "bf16",
+      "fp8_e4m3_sat"
+    ],
+    "max_context_tokens": 131072,
+    "max_gpu_memory_bytes": 47244640256,
+    "max_inflight_bytes": 4294967296,
+    "max_snapshots": 8,
+    "max_turns": null,
+    "mode": "encode",
+    "prefill_chunk_tokens": 8192,
+    "primary": [
+      "ans_lane_shared",
+      64
+    ],
+    "state_codecs": [
+      "zstd",
+      "ans_lane",
+      "ans_lane_shared"
+    ],
+    "zstd_level": 3
+  },
+  "run_id": "20261005_n3b_qwen35_traj3",
+  "session_fingerprint": "eae1e00787036c2c2527f2225945d814dd6bed7cdcff56b416c5af388543b33a",
+  "session_id": "PyCQA__pyflakes-761#71",
+  "session_meta": {
+    "assistant_turns": 44,
+    "dataset": "nebius/SWE-agent-trajectories",
+    "messages": 89,
+    "revision": "68195a1450865274106246d0d0296a1d6807b88e",
+    "row_index": 71,
+    "selection_rule": "first 4 rows with >= 15 assistant turns, distinct instance_id",
+    "session_id": "PyCQA__pyflakes-761#71",
+    "source_kind": "trajectory:nebius/SWE-agent-trajectories",
+    "trajectory_file": "data/raw/swe_agent_trajectories_distinct.jsonl"
+  },
+  "shared_table_set_bytes": 98304,
+  "shared_tables": "results/20261004_n1_qwen35_calib/shared_tables.npz",
+  "source": "trajectory",
+  "source_kind": "trajectory:nebius/SWE-agent-trajectories",
+  "turns_available": 44
+}

@@ -1,0 +1,17 @@
+{
+  "all_units_bit_exact": true,
+  "bit_exact_units": 416448,
+  "rehydration": {
+    "continuation_hidden_exact": true,
+    "continuation_hidden_max_abs_diff": 0.0,
+    "kv_blocks_differing_from_live_cache": 0,
+    "note": "blocks recomputed after a rollback may legitimately differ in bits from the stored original",
+    "state_tensors_differing_from_snapshot": 0,
+    "status": "ok",
+    "tokens": 15360
+  },
+  "truncated_reason": null,
+  "turns_available": 15,
+  "turns_processed": 15,
+  "wall_seconds": 140.1488592447713
+}

@@ -1,0 +1,20 @@
+{
+  "R_codec_kv": 1.4816691185973423,
+  "R_codec_stored": 1.2551188322135889,
+  "R_dedup_kv": 22.42505133470226,
+  "compressed_state_bytes": 2026616912,
+  "compressed_unique_kv_bytes": 689298988,
+  "input_tokens_all_turns": 700446,
+  "kv_bytes_per_token": 32768.0,
+  "primary": "ans_lane_shared@64",
+  "shared_table_set_bytes": 98304,
+  "snapshot_full_block_tokens": 698944,
+  "snapshot_kv_bytes": 22902996992.0,
+  "state_snapshot_bytes": 2387607552,
+  "stored_compressed_bytes_kv_plus_states_plus_tables": 2716014204,
+  "stored_raw_bytes_kv_plus_states": 3408920576,
+  "turns_processed": 46,
+  "turns_with_new_blocks": 46,
+  "unique_block_tokens": 31168,
+  "unique_kv_bytes": 1021313024
+}

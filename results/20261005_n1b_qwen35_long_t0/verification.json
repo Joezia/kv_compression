@@ -1,0 +1,17 @@
+{
+  "all_units_bit_exact": true,
+  "bit_exact_units": 1605488,
+  "rehydration": {
+    "continuation_hidden_exact": false,
+    "continuation_hidden_max_abs_diff": 0.25,
+    "kv_blocks_differing_from_live_cache": 45260,
+    "note": "blocks recomputed after a rollback may legitimately differ in bits from the stored original",
+    "state_tensors_differing_from_snapshot": 0,
+    "status": "ok",
+    "tokens": 262080
+  },
+  "truncated_reason": "turn 68 needs 270144 tokens > max_context_tokens=262144",
+  "turns_available": 131,
+  "turns_processed": 68,
+  "wall_seconds": 907.7946229879744
+}

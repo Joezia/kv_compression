@@ -1,0 +1,86 @@
+{
+  "model": {
+    "arch": "dense GQA, all layers full attention",
+    "dtype": "bfloat16",
+    "id": "Qwen/Qwen3-4B-Instruct-2507",
+    "key": "qwen3_4b_2507",
+    "loader": "AutoModelForCausalLM",
+    "max_context_tokens": 131072,
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "options": {
+    "cache_block_tokens": 64,
+    "cpu_workers": 16,
+    "kv_codecs": [
+      [
+        "zstd",
+        64
+      ],
+      [
+        "ans_raw",
+        64
+      ],
+      [
+        "ans_lane",
+        64
+      ],
+      [
+        "ans_lane_shared",
+        64
+      ],
+      [
+        "ans_lane",
+        16
+      ],
+      [
+        "ans_lane_shared",
+        16
+      ],
+      [
+        "ans_lane",
+        256
+      ],
+      [
+        "ans_lane_shared",
+        256
+      ]
+    ],
+    "kv_formats": [
+      "bf16",
+      "fp8_e4m3_sat"
+    ],
+    "max_context_tokens": 131072,
+    "max_gpu_memory_bytes": 47244640256,
+    "max_inflight_bytes": 4294967296,
+    "max_snapshots": 8,
+    "max_turns": null,
+    "mode": "encode",
+    "prefill_chunk_tokens": 4096,
+    "primary": [
+      "ans_lane_shared",
+      64
+    ],
+    "state_codecs": [
+      "zstd",
+      "ans_lane",
+      "ans_lane_shared"
+    ],
+    "zstd_level": 3
+  },
+  "run_id": "20261005_n2b_qwen3_4b_long_t0",
+  "session_fingerprint": "cc64699d54b1046dd3a657a029da373330526340d0f1a03bb4e022386eb88914",
+  "session_id": "002001296e8a8c38ad9d7cc436d691afc602",
+  "session_meta": {
+    "dataset": "semianalysisai/cc-traces-weka-062126@23f152f6f0f9399a85901b89a6458def0ef16729",
+    "hash_id_scope": "local",
+    "input_mapping": "AIPerf coding corpus hash-id synthesis; direct token IDs; no chat template",
+    "subagent_entries_skipped": 4,
+    "trace_block_size": 64,
+    "trace_index": 0
+  },
+  "shared_table_set_bytes": 110592,
+  "shared_tables": "results/20261005_n2_qwen3_4b_calib/shared_tables.npz",
+  "source": "agentx",
+  "source_kind": "AgentX-synth-session",
+  "turns_available": 131
+}

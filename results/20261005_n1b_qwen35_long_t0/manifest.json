@@ -1,0 +1,86 @@
+{
+  "model": {
+    "arch": "hybrid (8 full-attention GQA + 24 Gated-DeltaNet layers)",
+    "dtype": "bfloat16",
+    "id": "Qwen/Qwen3.5-9B",
+    "key": "qwen35_9b",
+    "loader": "Qwen3_5ForCausalLM",
+    "max_context_tokens": 262144,
+    "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a"
+  },
+  "options": {
+    "cache_block_tokens": 64,
+    "cpu_workers": 16,
+    "kv_codecs": [
+      [
+        "zstd",
+        64
+      ],
+      [
+        "ans_raw",
+        64
+      ],
+      [
+        "ans_lane",
+        64
+      ],
+      [
+        "ans_lane_shared",
+        64
+      ],
+      [
+        "ans_lane",
+        16
+      ],
+      [
+        "ans_lane_shared",
+        16
+      ],
+      [
+        "ans_lane",
+        256
+      ],
+      [
+        "ans_lane_shared",
+        256
+      ]
+    ],
+    "kv_formats": [
+      "bf16",
+      "fp8_e4m3_sat"
+    ],
+    "max_context_tokens": 262144,
+    "max_gpu_memory_bytes": 47244640256,
+    "max_inflight_bytes": 4294967296,
+    "max_snapshots": 8,
+    "max_turns": null,
+    "mode": "encode",
+    "prefill_chunk_tokens": 4096,
+    "primary": [
+      "ans_lane_shared",
+      64
+    ],
+    "state_codecs": [
+      "zstd",
+      "ans_lane",
+      "ans_lane_shared"
+    ],
+    "zstd_level": 3
+  },
+  "run_id": "20261005_n1b_qwen35_long_t0",
+  "session_fingerprint": "33616eac77a98577c9ad9f7b47f53fae72a7e29e626b561f315dcf65a01a7bc1",
+  "session_id": "002001296e8a8c38ad9d7cc436d691afc602",
+  "session_meta": {
+    "dataset": "semianalysisai/cc-traces-weka-062126@23f152f6f0f9399a85901b89a6458def0ef16729",
+    "hash_id_scope": "local",
+    "input_mapping": "AIPerf coding corpus hash-id synthesis; direct token IDs; no chat template",
+    "subagent_entries_skipped": 4,
+    "trace_block_size": 64,
+    "trace_index": 0
+  },
+  "shared_table_set_bytes": 98304,
+  "shared_tables": "results/20261004_n1_qwen35_calib/shared_tables.npz",
+  "source": "agentx",
+  "source_kind": "AgentX-synth-session",
+  "turns_available": 131
+}

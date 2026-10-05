@@ -1,0 +1,10 @@
+Mon Oct  5 10:41:57 AM +08 2026
+Deleted primary archives whose rehydration status was ok; units.csv.gz (per-unit sha256) kept.
+-rw-rw-r-- 1 zhouziang zhouziang 1736397844 Oct  4 23:35 artifacts/raw/20261004_n1_qwen35_t0_smoke/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 3539612284 Oct  4 23:46 artifacts/raw/20261005_n1_qwen35_t0/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 3447427708 Oct  4 23:54 artifacts/raw/20261005_n1_qwen35_t2/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 9754918752 Oct  5 08:19 artifacts/raw/20261005_n2_qwen3_4b_t0/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 9728730340 Oct  5 08:31 artifacts/raw/20261005_n2_qwen3_4b_t1/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 8439341708 Oct  5 08:42 artifacts/raw/20261005_n2_qwen3_4b_t2/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 2924994964 Oct  5 09:39 artifacts/raw/20261005_n3_qwen3_4b_traj0/primary_ans_lane_shared_64.akv2
+-rw-rw-r-- 1 zhouziang zhouziang 2956867356 Oct  5 09:43 artifacts/raw/20261005_n3_qwen3_4b_traj1/primary_ans_lane_shared_64.akv2

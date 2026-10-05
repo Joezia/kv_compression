@@ -1,0 +1,36 @@
+{
+  "source_runs": [
+    "20261005_n1_qwen35_t1",
+    "20261005_n1b_qwen35_long_t0",
+    "20261005_n1b_qwen35_long_t2",
+    "20261005_n2b_qwen3_4b_long_t0",
+    "20261005_n2b_qwen3_4b_long_t1",
+    "20261005_n2b_qwen3_4b_long_t2",
+    "20261005_n3b_qwen3_4b_traj0",
+    "20261005_n3b_qwen3_4b_traj1",
+    "20261005_n3b_qwen3_4b_traj2",
+    "20261005_n3b_qwen3_4b_traj3",
+    "20261005_n3b_qwen35_traj0",
+    "20261005_n3b_qwen35_traj1",
+    "20261005_n3b_qwen35_traj2",
+    "20261005_n3b_qwen35_traj3"
+  ],
+  "all_units_bit_exact": true,
+  "bit_exact_units": 16590152,
+  "rehydration": {
+    "20261005_n1_qwen35_t1": "skipped",
+    "20261005_n1b_qwen35_long_t0": "ok",
+    "20261005_n1b_qwen35_long_t2": "ok",
+    "20261005_n2b_qwen3_4b_long_t0": "ok",
+    "20261005_n2b_qwen3_4b_long_t1": "ok",
+    "20261005_n2b_qwen3_4b_long_t2": "ok",
+    "20261005_n3b_qwen3_4b_traj0": "ok",
+    "20261005_n3b_qwen3_4b_traj1": "ok",
+    "20261005_n3b_qwen3_4b_traj2": "ok",
+    "20261005_n3b_qwen3_4b_traj3": "ok",
+    "20261005_n3b_qwen35_traj0": "ok",
+    "20261005_n3b_qwen35_traj1": "ok",
+    "20261005_n3b_qwen35_traj2": "ok",
+    "20261005_n3b_qwen35_traj3": "ok"
+  }
+}
