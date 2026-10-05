@@ -51,6 +51,7 @@
 
 - v2 报告：`reports/meeting_2026-10-06_v2.md`
 - 报告引用数字：`results/20261005_n5_report_tables/`（由 `scripts/report_tables.py` 生成）
+- 跨模型稳定性图与逐轮数据：`results/20261005_n5_report_figures/`（由 `scripts/report_figures.py` 生成；两模型逐轮压缩比不重叠：Qwen3.5 1.4805–1.4839 / 249 轮，Qwen3-4B 1.4747–1.4789 / 190 轮）
 - 汇总表与图：`results/20261005_n4b_summary/`
 - N0：`results/20261004_n0_trace_structure/`；校准：`results/20261004_n1_qwen35_calib/`、`results/20261005_n2_qwen3_4b_calib/`；审计：`results/20261005_n2_qwen3_4b_audit/`
 - 按轮运行：`results/20261005_n1_qwen35_t1/`、`results/20261005_n1b_*`、`results/20261005_n2b_*`、`results/20261005_n3b_*`（被取代的短版运行仍保留：`20261004_n1_qwen35_t0_smoke`、`20261005_n1_qwen35_t{0,2}`、`20261005_n2_qwen3_4b_t*`、`20261005_n3_qwen3_4b_traj*`）

@@ -1,0 +1,32 @@
+{
+  "source_summary": "20261005_n4b_summary",
+  "source_runs": [
+    "20261005_n1_qwen35_t1",
+    "20261005_n1b_qwen35_long_t0",
+    "20261005_n1b_qwen35_long_t2",
+    "20261005_n2b_qwen3_4b_long_t0",
+    "20261005_n2b_qwen3_4b_long_t1",
+    "20261005_n2b_qwen3_4b_long_t2",
+    "20261005_n3b_qwen3_4b_traj0",
+    "20261005_n3b_qwen3_4b_traj1",
+    "20261005_n3b_qwen3_4b_traj2",
+    "20261005_n3b_qwen3_4b_traj3",
+    "20261005_n3b_qwen35_traj0",
+    "20261005_n3b_qwen35_traj1",
+    "20261005_n3b_qwen35_traj2",
+    "20261005_n3b_qwen35_traj3"
+  ],
+  "per_model_turn_ratio_min_max_n": {
+    "qwen35_9b": [
+      1.4804707795875032,
+      1.4839151576218321,
+      249
+    ],
+    "qwen3_4b_2507": [
+      1.4747180055005893,
+      1.4789392005954298,
+      190
+    ]
+  },
+  "models_overlap": false
+}
