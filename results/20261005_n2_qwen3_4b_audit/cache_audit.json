@@ -1,0 +1,812 @@
+{
+  "audit_tokens": 256,
+  "cuda_peak_reserved_bytes": 8185184256,
+  "kv_bytes_per_token": 147456,
+  "layer_type_counts": {
+    "full_attention": 36
+  },
+  "layers": [
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 0,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 1,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 2,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 3,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 4,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 5,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 6,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 7,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 8,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 9,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 10,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 11,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 12,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 13,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 14,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 15,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 16,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 17,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 18,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 19,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 20,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 21,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 22,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 23,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 24,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 25,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 26,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 27,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 28,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 29,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 30,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 31,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 32,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 33,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 34,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    },
+    {
+      "key": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ],
+      "layer": 35,
+      "type": "full_attention",
+      "value": [
+        [
+          1,
+          8,
+          256,
+          128
+        ],
+        "torch.bfloat16"
+      ]
+    }
+  ],
+  "model": {
+    "arch": "dense GQA, all layers full attention",
+    "dtype": "bfloat16",
+    "id": "Qwen/Qwen3-4B-Instruct-2507",
+    "key": "qwen3_4b_2507",
+    "loader": "AutoModelForCausalLM",
+    "max_context_tokens": 98304,
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554"
+  },
+  "state_bytes_per_snapshot": 0
+}

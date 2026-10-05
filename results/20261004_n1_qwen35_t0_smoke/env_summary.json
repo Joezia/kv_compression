@@ -1,0 +1,41 @@
+{
+  "command": [
+    "scripts/run_turns.py",
+    "run",
+    "--model",
+    "qwen35_9b",
+    "--trace-index",
+    "0",
+    "--max-turns",
+    "5",
+    "--tables",
+    "results/20261004_n1_qwen35_calib/shared_tables.npz",
+    "--run-id",
+    "20261004_n1_qwen35_t0_smoke"
+  ],
+  "cuda_visible_devices": null,
+  "gpu": {
+    "compute_capability": "8.6",
+    "free_bytes_at_start": 49763844096,
+    "logical_index": 0,
+    "name": "NVIDIA RTX A6000",
+    "physical_index": 1,
+    "total_bytes": 50897289216
+  },
+  "hf_home": null,
+  "hostname": "xtraa6k04",
+  "packages": {
+    "PyYAML": "6.0.3",
+    "aiperf": "0.13.0",
+    "constriction": "0.5.0",
+    "datasets": "4.1.1",
+    "numpy": "2.4.6",
+    "tokenizers": "0.23.2",
+    "torch": "2.11.0+cu128",
+    "transformers": "5.17.0",
+    "zstandard": "0.25.0"
+  },
+  "platform": "Linux-5.15.0-25-generic-x86_64-with-glibc2.35",
+  "python": "3.11.16",
+  "use_hub_kernels": null
+}

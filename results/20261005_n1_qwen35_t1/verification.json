@@ -1,0 +1,12 @@
+{
+  "all_units_bit_exact": true,
+  "bit_exact_units": 730224,
+  "rehydration": {
+    "reason": "final linear-state snapshot was not stored (no new blocks)",
+    "status": "skipped"
+  },
+  "truncated_reason": null,
+  "turns_available": 33,
+  "turns_processed": 33,
+  "wall_seconds": 238.97961039468646
+}

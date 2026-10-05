@@ -1,0 +1,2 @@
+session_id,turn_idx,request_path,t,think_time,input_tokens,full_blocks,model_lcp_tokens,restore,rollback_from,rollback_to,fed_tokens,forward_seconds,hit_blocks,new_blocks,new_kv_raw_bytes,state_snapshot_raw_bytes,fp8_clamped_elements,uncovered_tail_tokens,gpu_peak_reserved_bytes
+0196085d85d2075a50b74cd8795ffbdcea9a,0,main/0,0.0,,88384,1381,0,none,,,88384,66.48394867312163,0,1381,13032751104,0,0,0,32151437312

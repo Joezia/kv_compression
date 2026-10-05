@@ -1,0 +1,22 @@
+{
+  "dataset": "semianalysisai/cc-traces-weka-062126@23f152f6f0f9399a85901b89a6458def0ef16729",
+  "sessions": 50,
+  "main_turns": 7291,
+  "snapshot_tokens": 2458564160,
+  "unique_block_tokens": 27329920,
+  "dedup_ratio_full_blocks": 89.95870313561107,
+  "dedup_ratio_incl_uncached_tail": 89.95870313561107,
+  "model_bytes": {
+    "qwen35_9b": {
+      "kv_bytes_per_token": 32768,
+      "state_bytes_per_snapshot": 51904512,
+      "audited": true
+    },
+    "qwen3_4b_2507": {
+      "kv_bytes_per_token": 147456,
+      "state_bytes_per_snapshot": 0,
+      "audited": false
+    }
+  },
+  "note": "hash-level structure only; content is not involved. Subagent requests counted, not deduplicated."
+}

@@ -25,7 +25,7 @@ models:
     max_context_tokens: 131072
   qwen3_4b_2507:
     id: Qwen/Qwen3-4B-Instruct-2507
-    revision: null
+    revision: cdbee75f17c01a7cc42f958dc650907174af0554 
     loader: AutoModelForCausalLM
     dtype: bfloat16
     arch: dense GQA, all layers full attention
