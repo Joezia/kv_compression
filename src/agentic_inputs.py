@@ -297,7 +297,8 @@ def normalize_messages(raw_messages: list[dict]) -> list[dict]:
         role = _ROLE_MAP.get(str(_field(msg, "role", "from", default="")).lower())
         if role is None:
             raise ValueError(f"unknown message role: {msg}")
-        content = _field(msg, "content", "text", "value", default="")
+        # nebius/SWE-agent-trajectories keeps the system text under "system_prompt".
+        content = _field(msg, "content", "text", "value", "system_prompt", default="")
         if isinstance(content, list):  # list-of-parts format
             content = "".join(part.get("text", "") for part in content if isinstance(part, dict))
         out.append({"role": role, "content": str(content)})
@@ -323,8 +324,10 @@ def trajectory_session(
         ids = tokenizer.apply_chat_template(
             messages[:i], add_generation_prompt=True, tokenize=True, **kwargs
         )
-        if isinstance(ids, dict):
+        if hasattr(ids, "keys"):  # transformers 5.x returns a BatchEncoding (a UserDict, not a dict)
             ids = ids["input_ids"]
+        if len(ids) and isinstance(ids[0], (list, tuple)):
+            ids = ids[0]
         turns.append(
             Turn(
                 turn_idx=len(turns),

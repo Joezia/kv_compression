@@ -17,6 +17,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from agentic_inputs import (  # noqa: E402
     Session,
+    normalize_messages,
+    trajectory_session,
     Turn,
     common_prefix_len,
     hash_id_block_keys,
@@ -83,6 +85,39 @@ def test_chain_keys_are_prefix_sensitive():
 def test_common_prefix_len():
     assert common_prefix_len(np.array([1, 2, 3]), np.array([1, 2, 4, 5])) == 2
     assert common_prefix_len(np.array([], dtype=np.uint32), np.array([1])) == 0
+
+
+def test_normalize_messages_swe_agent_schema():
+    raw = [
+        {"role": "system", "system_prompt": "SETTING: ...", "mask": False, "cutoff_date": "01.01.2023"},
+        {"role": "user", "text": "fix the bug", "mask": False},
+        {"role": "ai", "text": "ls", "mask": True},
+    ]
+    assert normalize_messages(raw) == [
+        {"role": "system", "content": "SETTING: ..."},
+        {"role": "user", "content": "fix the bug"},
+        {"role": "assistant", "content": "ls"},
+    ]
+
+
+def test_trajectory_session_with_batch_encoding_tokenizer():
+    tokenizers = pytest.importorskip("tokenizers")
+    transformers = pytest.importorskip("transformers")
+    vocab = {"[UNK]": 0, **{c: i + 1 for i, c in enumerate("abcdefghijklmnopqrstuvwxyz<>|_ :.")}}
+    core = tokenizers.Tokenizer(tokenizers.models.WordLevel(vocab, unk_token="[UNK]"))
+    core.pre_tokenizer = tokenizers.pre_tokenizers.Split("", "isolated")
+    tok = transformers.PreTrainedTokenizerFast(tokenizer_object=core)
+    tok.chat_template = (
+        "{% for m in messages %}<|{{ m.role }}|>{{ m.content }}{% endfor %}"
+        "{% if add_generation_prompt %}<|assistant|>{% endif %}"
+    )
+    raw = [{"role": "system", "system_prompt": "sys"}, {"role": "user", "text": "fix"}, {"role": "ai", "text": "ls"},
+           {"role": "user", "text": "out"}, {"role": "ai", "text": "done"}]
+    session = trajectory_session("x", raw, tokenizer=tok, source_kind="test")
+    assert [t.request_path for t in session.turns] == ["msg/2", "msg/4"]
+    first, second = (t.token_ids for t in session.turns)
+    assert first.dtype == np.uint32 and len(second) > len(first)
+    assert common_prefix_len(first, second) >= len(first) - len("<|assistant|>")
 
 
 def test_trace_turn_stats_dedup():

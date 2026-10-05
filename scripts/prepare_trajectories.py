@@ -15,7 +15,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,7 +59,14 @@ def main() -> None:
     if args.inspect:
         row = next(iter(ds))
         print(json.dumps({k: (type(v).__name__, str(v)[:300]) for k, v in row.items()}, indent=2))
-        return
+        raw = find_messages(row)
+        if raw is not None:
+            print("message keys:", sorted({k for m in raw for k in m}))
+            print("roles:", dict(Counter(str(m.get("role", m.get("from"))) for m in raw)))
+            msgs = normalize_messages(raw)
+            print("normalized:", [(m["role"], len(m["content"])) for m in msgs[:6]], "...")
+            print("empty contents after normalization:", sum(not m["content"] for m in msgs))
+        hard_exit()
     if args.out is None:
         parser.error("--out is required")
     if args.out.exists():
@@ -70,6 +79,8 @@ def main() -> None:
             if raw is None:
                 continue
             msgs = normalize_messages(raw)
+            if any(not m["content"] for m in msgs if m["role"] == "system"):
+                raise SystemExit(f"row {index}: empty system message after normalization; check the schema")
             n_assistant = sum(m["role"] == "assistant" for m in msgs)
             if n_assistant < args.min_assistant_turns:
                 continue
@@ -84,6 +95,15 @@ def main() -> None:
             if kept >= args.count:
                 break
     print(args.out, kept)
+    hard_exit()
+
+
+def hard_exit() -> None:
+    """Skip interpreter finalization: datasets' streaming threads can abort it
+    (PyGILState_Release fatal error) after all output is already written."""
+    sys.stdout.flush()
+    sys.stderr.flush()
+    os._exit(0)
 
 
 if __name__ == "__main__":
