@@ -67,7 +67,7 @@ R_codec = Unique / Compressed     ← 这才叫“无损压缩率”，属于模
 | 滑窗 K/V | 固定窗口 | — | Gemma-3（gated）；gpt-oss-20b 单卡显存不足 |
 | DSA indexer key | 每 token | — | DeepSeek-V3.2 / GLM-5 一类，只能做微型模型单测 |
 
-单卡放不下的（BF16 权重超过约 32 GB，例如 30B 级 MoE、Kimi-Linear-48B）需要第二张卡或量化权重，申请资源后再定。
+单卡放不下的（BF16 权重超过约 32 GB）：30B 级 MoE（约 61 GB）可以跨 GPU 0/1 加载（两张卡均已授权）；更大的（例如 Kimi-Linear-48B，约 96 GB）需要量化权重或更多资源。
 
 **K/V 数据格式**（由部署决定，只作用于每 token 状态）：BF16 基线；FP8-E4M3（scale = 1，以及每张量动态 scale）；FP8-E5M2；INT8（每 token 每 head scale）；INT4（KIVI 风格分组）；NVFP4 / MXFP4（块 scale）。量化格式都是带标注的事后转换、不回灌模型；无损相对“量化后的表示（数据 + scale）”定义，同时报告相对 BF16 的端到端比例和有效 bit/元素。
 

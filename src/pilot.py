@@ -112,7 +112,9 @@ def environment_summary(cfg: dict[str, Any], command: list[str]) -> dict[str, An
         free, total = torch.cuda.mem_get_info(0)
         gpu = {
             "logical_index": 0,
-            "physical_index": cfg["runtime"]["physical_gpu"],
+            # The real binding comes from CUDA_VISIBLE_DEVICES; the config value is only the intended one.
+            "physical_index": os.environ.get("CUDA_VISIBLE_DEVICES"),
+            "configured_physical_gpu": cfg["runtime"]["physical_gpu"],
             "name": props.name,
             "total_bytes": total,
             "free_bytes_at_start": free,
