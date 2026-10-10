@@ -2,13 +2,13 @@
 
 本项目研究 agentic workload（多轮、工具调用、前缀高度复用）中持久推理缓存的无损压缩空间：full-attention K/V，以及混合架构实际保存的 recurrent/convolution state。核心粒度是**按轮**：每一轮请求在 prefix cache 之上新增了多少状态、这些新增状态能被无损压缩多少，并且去重收益与熵编码收益分开核算。ANS 是首先评估的编码方法，不是预设一定优于其他方案的结论。
 
-当前状态：P1（单请求闭环）已完成；P2（agentic 按轮测量）首轮已完成：两个模型、6 个 AgentX 会话与 8 条 SWE-agent 轨迹，报告见 `reports/meeting_2026-10-06_v2.md`。具体进度见 STATE 和当前周计划。
+当前状态：P1（单请求闭环）与 P2 首轮（agentic 按轮测量：两个模型、6 个 AgentX 会话与 8 条 SWE-agent 轨迹，报告 `reports/meeting_2026-10-06_v2.md`）已完成；进入 P3（代表性：更多持久状态类型、模型、K/V 格式与数据集）。具体进度见 STATE 和当前周计划。
 
 ## 两层计划的职责
 
 本 README 是项目级路线：研究问题、阶段、阶段验收、统计口径和非目标，不承载每日待办。`plans/weekly/YYYY-MM-DD.md` 是以组会日期命名的周计划，周会后保留原计划并追加复盘。`STATE.md` 只记事实、最近结果、阻塞与下一步。`AGENTS.md` 是持续适用的执行规则。`CODEX_TASK.md` 是首轮启动任务书，已被本 README 与周计划取代的部分以后二者为准。
 
-当前周计划：[2026-10-06](plans/weekly/2026-10-06.md)。
+当前周计划：[2026-10-13](plans/weekly/2026-10-13.md)。上一周：[2026-10-06](plans/weekly/2026-10-06.md)（已冻结并复盘）。
 
 ## 研究问题
 
@@ -45,33 +45,33 @@ R_codec = Unique / Compressed     ← 这才叫“无损压缩率”，属于模
 
 ## 数据、模型与 dtype 矩阵
 
-数据源（按优先级）：
+**数据集**：完整登记与适用性评估见 [`docs/datasets.md`](docs/datasets.md)。数据集按两类需求使用：结构需求（会话、前缀复用、时间间隔，只需 CPU）与内容需求（可渲染成 token 的多轮文本，用于真实前向）。v2 已证实熵编码压缩率几乎不随内容变化，所以内容数据集只作抽查，结构数据集是比较不同负载的主要依据。
 
 | 数据 | 结构 | 内容 | 用途 |
 |---|---|---|---|
-| AgentX `semianalysisai/cc-traces-weka-062126` | 真实 Claude Code 会话：轮次、前缀关系（hash_ids）、时序、subagent | AIPerf 合成（模板代码窗口拼接，每 64 token 一个分隔 token） | 主数据：按轮结构、R_dedup |
-| 真实 agent 轨迹（候选：SWE-agent / OpenHands 公开轨迹，名称与 schema 需在服务器上核实） | 真实多轮 | 真实代码/工具输出 | 内容代表性对照 |
-| 普通多轮对话（候选：ShareGPT / LMSYS 类） | 多轮 | 真实对话 | “agentic vs chat”对照（P3 之后） |
+| AgentX 完整版与 256k 变体 | 真实 Claude Code 会话（hash_ids，`local` 作用域） | AIPerf 合成 | 主结构数据；256k 变体用于覆盖完整会话的按轮实验 |
+| TraceLab | 真实生产使用 | 语义文本已移除 | 第二个真实结构来源（只做结构分析） |
+| Mooncake 公开 trace（待核实） | 真实生产请求 hash_ids | 无 | 若 hash 全局有效，可测跨会话 / 跨用户去重 |
+| nebius/SWE-agent、thoughtworks、SWE-ZERO | 模型生成的轨迹 | 可读文本 | 内容抽查；跨会话去重（按 token 内容哈希） |
+| ShareGPT / WildChat | 普通多轮对话 | 真实对话 | agentic 与普通对话的结构对照 |
 
-AgentX 的 `hash_id_scope=local`，不能表达跨会话共享；跨用户实验需要其他数据（P5）。
+**持久状态类型**（由模型决定，每个新模型先 audit，以运行时事实为准）：
 
-模型按顺序逐个运行，每个新模型先做缓存结构审计（`run_turns.py audit`），确认层类型、shape、dtype、每 token 字节数之后，再跑按轮实验：
+| 状态类型 | 每 token / 固定 | 已测 | 候选（单卡 A6000） |
+|---|---|---|---|
+| GQA K/V | 每 token | Qwen3-4B-Instruct-2507、Qwen3.5-9B（8 层） | Qwen3 1.7B/8B/14B；Llama-3.1-8B（gated） |
+| MLA latent `c_KV` + 解耦 RoPE key `k_pe` | 每 token | — | DeepSeek-V2-Lite-Chat、Moonlight-16B-A3B（transformers 5.17 直接缓存 latent 与 `k_pe`，与 vLLM/SGLang 一致） |
+| Gated DeltaNet recurrent + conv | 固定 | Qwen3.5-9B | — |
+| Mamba2 SSM + conv | 固定 | — | Nemotron-Nano-9B-v2 / Nemotron-H、Granite-4.0-H、Falcon-H1 |
+| 短卷积 state | 固定 | — | LFM2 |
+| 滑窗 K/V | 固定窗口 | — | Gemma-3（gated）；gpt-oss-20b 单卡显存不足 |
+| DSA indexer key | 每 token | — | DeepSeek-V3.2 / GLM-5 一类，只能做微型模型单测 |
 
-| 顺序 | 模型 | 架构/缓存 | 原生上下文 | 资源/备注 |
-|---|---|---|---|---|
-| 1 | Qwen/Qwen3.5-9B | 混合：8 层 GQA K/V（BF16）+ 24 层 Gated DeltaNet（FP32 recurrent + BF16 conv） | 长（已在 8K 实测） | 单卡可跑，已审计 |
-| 2 | Qwen/Qwen3-4B-Instruct-2507 | 标准 dense GQA，全部层为 K/V | 256K（待审计） | 单卡；同家族对照，隔离架构因素 |
-| 3 | meta-llama/Llama-3.1-8B-Instruct | 另一家族 dense GQA | 128K | 需要 HF gated 许可 |
-| 4 | openai/gpt-oss-20b | 滑窗与全注意力交替 + attention sink | 128K | runner 需支持滑窗层；MXFP4 权重在 Ampere 上的加载需核实 |
-| 5 | deepseek-ai/DeepSeek-V2-Lite-Chat | MLA：实际应缓存 latent（576 维/层/token） | 32K | HF 实现缓存的是展开后的 K/V，需加 hook 取 latent |
-| 6 | Qwen3-Coder-30B-A3B 或同类 MoE agentic 模型 | MoE + GQA | 256K | 单张 A6000 放不下 BF16；需第二张卡或量化权重，先申请资源 |
+单卡放不下的（BF16 权重超过约 32 GB，例如 30B 级 MoE、Kimi-Linear-48B）需要第二张卡或量化权重，申请资源后再定。
 
-dtype 与模型并不完全绑定：
+**K/V 数据格式**（由部署决定，只作用于每 token 状态）：BF16 基线；FP8-E4M3（scale = 1，以及每张量动态 scale）；FP8-E5M2；INT8（每 token 每 head scale）；INT4（KIVI 风格分组）；NVFP4 / MXFP4（块 scale）。量化格式都是带标注的事后转换、不回灌模型；无损相对“量化后的表示（数据 + scale）”定义，同时报告相对 BF16 的端到端比例和有效 bit/元素。
 
-- **模型决定的部分**：哪些状态存在、各自原生 dtype（例如 Qwen3.5 的 FP32 recurrent，MLA 的 latent）。这部分随模型矩阵自然覆盖。
-- **部署决定的部分**：K/V 以 BF16 还是 FP8 存放（vLLM/SGLang 的 `kv_cache_dtype=fp8` 很常见）。每个模型都测 BF16 与 FP8 两种 K/V 格式。当前的 FP8 是带标注的事后转换（饱和 cast 到 E4M3，scale=1.0，不回灌模型）；P3 再用真实 serving 引擎导出原生 FP8 K/V 对照。
-
-无损始终相对实际被编码的 buffer 定义；FP8 转换本身是有损的，单独标注，不和 BF16 结果混用。
+无损始终相对实际被编码的 buffer 定义；量化本身是有损的，单独标注，不和 BF16 结果混用。
 
 ## 项目阶段
 
@@ -85,9 +85,9 @@ dtype 与模型并不完全绑定：
 
 验收：至少一个模型、两个以上完整（或按轮截断并标注）的会话，全部单元 bit-exact，归档重建检查通过；R_dedup 与 R_codec 分开报告，headline 使用最佳实用 codec；各项局限写清。
 
-### P3 — 代表性
+### P3 — 代表性（当前）
 
-按上表顺序逐个扩展模型；加入真实内容轨迹对照与普通多轮对话对照；覆盖 subagent、更长的会话、原生 FP8 serving 导出。每一步只变一个因素，不一开始铺开笛卡尔积。
+按上表扩展持久状态类型、模型家族与规模、K/V 数据格式；用多个数据集比较会话结构（复用率、每轮增量、时间间隔、跨会话共享）；之后覆盖 subagent 与原生 FP8 serving 导出。新模型统一跑一组短上下文内容集以便横向比较，原生上下文足够的模型再跑 AgentX 长会话；不靠修改 RoPE 延长上下文。
 
 验收：说明 P2 结论在哪些条件下成立、在哪些条件下失效。
 
